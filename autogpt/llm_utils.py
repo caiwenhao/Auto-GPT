@@ -71,7 +71,7 @@ def create_chat_completion(
     """
     os.environ["http_proxy"] = "http://127.0.0.1:10809"
     os.environ["https_proxy"] = "http://127.0.0.1:10809"
-    os.environ["all_proxy"] = "http://127.0.0.1:10809"
+    os.environ["all_proxy"] = "socks5://127.0.0.1:10808"
     response = None
     num_retries = 10
     if CFG.debug_mode:
@@ -128,7 +128,7 @@ def create_embedding_with_ada(text) -> list:
     """Create a embedding with text-ada-002 using the OpenAI SDK"""
     os.environ["http_proxy"] = "http://127.0.0.1:10809"
     os.environ["https_proxy"] = "http://127.0.0.1:10809"
-    os.environ["all_proxy"] = "http://127.0.0.1:10809"
+    os.environ["all_proxy"] = "socks5://127.0.0.1:10808"
     num_retries = 10
     for attempt in range(num_retries):
         backoff = 2 ** (attempt + 2)
