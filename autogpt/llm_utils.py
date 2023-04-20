@@ -6,6 +6,7 @@ import time
 import openai
 from openai.error import APIError, RateLimitError
 from colorama import Fore
+import os
 
 from autogpt.config import Config
 
