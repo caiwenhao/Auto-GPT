@@ -32,6 +32,14 @@ def browse_website(url: str, question: str) -> tuple[str, WebDriver]:
     Returns:
         Tuple[str, WebDriver]: The answer and links to the user and the webdriver
     """
+    if 'http_proxy' in os.environ:
+        del os.environ['http_proxy']
+
+    if 'https_proxy' in os.environ:
+        del os.environ['https_proxy']
+
+    if 'all_proxy' in os.environ:
+        del os.environ['all_proxy']
     driver, text = scrape_text_with_selenium(url)
     add_header(driver)
     summary_text = summary.summarize_text(url, text, question, driver)
@@ -65,9 +73,6 @@ def scrape_text_with_selenium(url: str) -> tuple[WebDriver, str]:
     options.add_argument(
         "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36"
     )
-    options.add_argument('--no-sandbox')
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
     if CFG.selenium_web_browser == "firefox":
         driver = webdriver.Firefox(
             executable_path=GeckoDriverManager().install(), options=options

@@ -20,6 +20,9 @@ def google_search(query: str, num_results: int = 8) -> str:
     Returns:
         str: The results of the search.
     """
+    os.environ["http_proxy"] = "http://127.0.0.1:10809"
+    os.environ["https_proxy"] = "http://127.0.0.1:10809"
+    os.environ["all_proxy"] = "http://127.0.0.1:10809"
     search_results = []
     if not query:
         return json.dumps(search_results)
@@ -44,7 +47,9 @@ def google_official_search(query: str, num_results: int = 8) -> str | list[str]:
     Returns:
         str: The results of the search.
     """
-
+    os.environ["http_proxy"] = "http://127.0.0.1:10809"
+    os.environ["https_proxy"] = "http://127.0.0.1:10809"
+    os.environ["all_proxy"] = "http://127.0.0.1:10809"
     from googleapiclient.discovery import build
     from googleapiclient.errors import HttpError
 
