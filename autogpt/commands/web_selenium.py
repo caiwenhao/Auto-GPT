@@ -17,6 +17,7 @@ from selenium.webdriver.safari.options import Options as SafariOptions
 import logging
 from pathlib import Path
 from autogpt.config import Config
+import os
 
 FILE_DIR = Path(__file__).parent.parent
 CFG = Config()
